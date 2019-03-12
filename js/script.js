@@ -79,6 +79,36 @@ const addSearch = () => {
     let pageHeader = document.querySelector('div.page-header');
     pageHeader.appendChild(div);
 
+    // search function
+    const filterList = () => {
+
+        let textSearch = input.value.toLowerCase();
+        let matches = [];
+
+        for (let i = 0; i < completeList.length; i++) {
+            let name = completeList[i].querySelector('h3').textContent;
+            let email = completeList[i].querySelector('span.email').textContent;
+            //console.log(name, email);
+            if (name.includes(textSearch) || email.includes(textSearch)) {
+                matches.push(completeList[i]);
+            }
+        }
+        //console.log(matches);
+        if(matches.length > 0) {
+            appendPageLinks(matches);
+        }
+    };
+
+    //input.addEventListener('keyup', filterList);
+    searchButton.addEventListener('click', () => {
+        //prevent triggering search on button clicks with no input
+        if (input.value !== '') {
+            filterList();
+            //clear input field after search
+            input.value = '';
+        }
+    });
+
 };
 
 
