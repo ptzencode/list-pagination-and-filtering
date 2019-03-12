@@ -40,7 +40,6 @@ function init () {
 
         // eg. for 54 students, 6 total pages
         let totalPages = Math.ceil(list.length / 10);
-        //console.log(totalPages);
 
         let div = document.createElement('div');
         div.className = 'pagination';
@@ -117,15 +116,16 @@ function init () {
             for (let i = 0; i < completeList.length; i++) {
                 let name = completeList[i].querySelector('h3').textContent;
                 let email = completeList[i].querySelector('span.email').textContent;
-                //console.log(name, email);
+
                 if (name.includes(textSearch) || email.includes(textSearch)) {
                     matches.push(completeList[i]);
                 }
             }
-            //console.log(matches);
+
             if(matches.length > 0) {
                 appendPageLinks(matches);
             } else {
+                // view for no results found
                 hidePage();
                 let div = document.createElement('div');
                 div.className = 'no-matches';
