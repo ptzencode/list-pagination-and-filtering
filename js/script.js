@@ -18,7 +18,21 @@ const showPage = (list,page) => {
     }
 };
 
+const hidePage = () => {
+    let pagination = document.querySelector('div.pagination');
+    //clear previous view of page
+    if(pagination) {
+        pageDiv.removeChild(pagination);
+        for (let li of completeList) {
+            li.style.display = 'none';
+        }
+    }
+};
+
 const appendPageLinks = (list) => {
+    //clear previous view
+    hidePage();
+
     // eg. for 54 students, 6 total pages
     let totalPages = Math.ceil(list.length / 10);
     console.log(totalPages);
