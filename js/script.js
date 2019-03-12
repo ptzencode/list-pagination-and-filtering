@@ -64,6 +64,25 @@ const appendPageLinks = (list) => {
     showPage(list,1);
 };
 
+const addSearch = () => {
+    let div = document.createElement('div');
+    div.className = 'student-search';
+    let input = document.createElement('input');
+    input.setAttribute('placeholder','Search for students...');
+    let searchButton = document.createElement('button');
+    searchButton.textContent = 'Search';
+
+    div.appendChild(input);
+    div.appendChild(searchButton);
+
+
+    let pageHeader = document.querySelector('div.page-header');
+    pageHeader.appendChild(div);
+
+};
+
+
 window.onload = function() {
     appendPageLinks(completeList);
+    addSearch();
 };
