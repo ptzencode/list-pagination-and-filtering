@@ -20,12 +20,16 @@ const showPage = (list,page) => {
 
 const hidePage = () => {
     let pagination = document.querySelector('div.pagination');
+    let noMatches = document.querySelector('div.no-matches');
     //clear previous view of page
     if(pagination) {
         pageDiv.removeChild(pagination);
         for (let li of completeList) {
             li.style.display = 'none';
         }
+    }
+    if(noMatches) {
+        pageDiv.removeChild(noMatches);
     }
 };
 
@@ -110,6 +114,14 @@ const addSearch = () => {
         //console.log(matches);
         if(matches.length > 0) {
             appendPageLinks(matches);
+        } else {
+            hidePage();
+            let div = document.createElement('div');
+            div.className = 'no-matches';
+            let h2 = document.createElement('h2');
+            h2.textContent = 'No Results Found';
+            div.appendChild(h2);
+            pageDiv.appendChild(div);
         }
     };
 
