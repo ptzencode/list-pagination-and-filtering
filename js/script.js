@@ -40,7 +40,7 @@ function init () {
 
         // eg. for 54 students, 6 total pages
         let totalPages = Math.ceil(list.length / 10);
-        console.log(totalPages);
+        //console.log(totalPages);
 
         let div = document.createElement('div');
         div.className = 'pagination';
