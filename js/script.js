@@ -59,7 +59,6 @@ function init () {
         }
 
         ul.addEventListener('click', (e) => {
-            //e.preventDefault();
             if(e.target.tagName === 'A') {
                 let clickedLink = e.target;
                 let allLinks = document.querySelectorAll('.pagination a');
@@ -90,16 +89,27 @@ function init () {
         input.setAttribute('placeholder','Search for students...');
         let searchButton = document.createElement('button');
         searchButton.textContent = 'Search';
+        let showAllButton = document.createElement('button');
+        showAllButton.className = 'show-all';
+        showAllButton.textContent = 'Show All';
+        showAllButton.style.display = 'none';
 
         div.appendChild(input);
         div.appendChild(searchButton);
-
+        div.appendChild(showAllButton);
 
         let pageHeader = document.querySelector('div.page-header');
         pageHeader.appendChild(div);
 
         // search function
         const filterList = () => {
+            //show all button displayed only when search is trigerred
+            showAllButton.style.display = 'inline-block';
+            showAllButton.addEventListener('click', (e) => {
+                input.value = '';
+                appendPageLinks(completeList);
+                e.target.style.display = 'none';
+            });
 
             let textSearch = input.value.toLowerCase();
             let matches = [];
@@ -126,7 +136,7 @@ function init () {
             }
         };
 
-        //input.addEventListener('keyup', filterList);
+
         searchButton.addEventListener('click', () => {
             //prevent triggering search on button clicks with no input
             if (input.value !== '') {
