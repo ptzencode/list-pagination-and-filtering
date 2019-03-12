@@ -136,7 +136,7 @@ function init () {
             }
         };
 
-
+        input.addEventListener('keyup', filterList);
         searchButton.addEventListener('click', () => {
             //prevent triggering search on button clicks with no input
             if (input.value !== '') {
